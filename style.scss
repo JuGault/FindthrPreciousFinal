@@ -1,0 +1,32 @@
+$orange : #ff5f01;
+$yellow : #fcca02;
+$black : #353534;
+
+@mixin myShadows ($x, $y, $blur, $color) {
+  box-shadow: $x $y 5px $blur $color;
+}
+
+@mixin squareCreator($width,$height,$color,$borderSize,$margin){
+  width: $width;
+  height: $height;
+  border: solid $color $borderSize;
+  border-radius: 50%;
+  margin:$margin;
+}
+
+.circleOrange{
+  @include squareCreator(50px,50px,$orange,4px,50px);
+  @include myShadows(2px,2px,0px,$orange);
+}
+
+.circleYellow{
+  @include squareCreator(100px,100px,$yellow,10px,50px);
+  @include myShadows(2px,2px,0px,$yellow);
+}
+
+@for $i from 1 through 6 {
+  .circleBlack#{$i}{
+    @include squareCreator((30px+$i*10),(30px+$i*10),$black,7px,-(10px+$i*3px));
+    @include myShadows(2px,2px,0px,$black);
+  }
+}
